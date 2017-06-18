@@ -1,0 +1,70 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1404\cocoasubrtf470
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fnil\fcharset0 Menlo-Regular;}
+{\colortbl;\red255\green255\blue255;\red170\green13\blue145;\red92\green38\blue153;\red63\green110\blue116;
+\red28\green0\blue207;\red196\green26\blue22;\red46\green13\blue110;\red0\green116\blue0;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 Scroll Textfield\
+\
+\pard\tx890\pardeftab890\pardirnatural\partightenfactor0
+
+\f1\fs36 \cf0 \CocoaLigature0  \cf2 func\cf0  textFieldShouldBeginEditing(\cf2 _\cf0  textField: \cf3 UITextField\cf0 ) -> \cf3 Bool\cf0  \{\
+        \
+       \
+        \
+        \cf2 if\cf0 (textField == \cf4 txtFirstname\cf0 )\
+        \{\
+            \cf4 scrollview\cf0 .\cf3 contentOffset\cf0 =\cf3 CGPoint\cf0 (x: \cf5 0\cf0 , y: \cf5 50\cf0 )\
+        \}\cf2 else\cf0  \cf2 if\cf0 (textField == \cf4 txtLastname\cf0 )\
+        \{\
+            \cf4 scrollview\cf0 .\cf3 contentOffset\cf0 =\cf3 CGPoint\cf0 (x: \cf5 0\cf0 , y: \cf5 100\cf0 )\
+        \}\
+        \cf2 else\cf0  \cf2 if\cf0 (textField == \cf4 txtEmailId\cf0 )\
+        \{\
+            \cf4 scrollview\cf0 .\cf3 contentOffset\cf0 =\cf3 CGPoint\cf0 (x: \cf5 0\cf0 , y: \cf5 150\cf0 )\
+        \}\cf2 else\cf0  \cf2 if\cf0 (textField == \cf4 txtMobileNo\cf0 )\
+        \{\
+            \cf4 scrollview\cf0 .\cf3 contentOffset\cf0 =\cf3 CGPoint\cf0 (x: \cf5 0\cf0 , y: \cf5 200\cf0 )\
+        \}\cf2 else\cf0  \cf2 if\cf0 (textField == \cf4 txtGender\cf0 )\
+        \{\
+            \cf4 scrollview\cf0 .\cf3 contentOffset\cf0 =\cf3 CGPoint\cf0 (x: \cf5 0\cf0 , y: \cf5 250\cf0 )\
+        \}\cf2 else\cf0  \cf2 if\cf0 (textField == \cf4 txtPassword\cf0 )\
+        \{\
+            \cf4 scrollview\cf0 .\cf3 contentOffset\cf0 =\cf3 CGPoint\cf0 (x: \cf5 0\cf0 , y: \cf5 300\cf0 )\
+        \}\cf2 else\cf0  \cf2 if\cf0 (textField == \cf4 txtConfirmPass\cf0 )\
+        \{\
+            \cf4 scrollview\cf0 .\cf3 contentOffset\cf0 =\cf3 CGPoint\cf0 (x: \cf5 0\cf0 , y: \cf5 400\cf0 )\
+        \}\cf2 else\cf0  \cf2 if\cf0 (textField == \cf4 txtLocation\cf0 )\
+        \{\
+            \cf4 scrollview\cf0 .\cf3 contentOffset\cf0 =\cf3 CGPoint\cf0 (x: \cf5 0\cf0 , y: \cf5 500\cf0 )\
+        \}\
+        \
+        \cf2 return\cf0  \cf2 true\cf0 \
+    \}\
+ \
+\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\
+\
+Hide keyboard when click outside\
+\
+\
+Didload\
+\
+\
+\
+ \cf2 let\cf0  tap: \cf3 UITapGestureRecognizer\cf0  = \cf3 UITapGestureRecognizer\cf0 (target: \cf2 self\cf0 , action: \cf6 "dismissKeyboard"\cf0 )\
+        \
+        \cf3 view\cf0 .\cf7 addGestureRecognizer\cf0 (tap)\
+\
+\
+\
+\'97\'97\'97\'97\
+\
+ \cf2 func\cf0  dismissKeyboard() \{\
+        \cf8 //Causes the view (or one of its embedded text fields) to resign the first responder status.\
+\cf0         \cf3 view\cf0 .\cf7 endEditing\cf0 (\cf2 true\cf0 )\
+    \}\
+\'97\'97\'97\'97\'97\'97\
+\
+ \cf4 txtFirstname\cf0 .\cf7 becomeFirstResponder\cf0 ()\
+}

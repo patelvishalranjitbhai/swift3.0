@@ -1,0 +1,132 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1404\cocoasubrtf470
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fnil\fcharset0 Menlo-Regular;}
+{\colortbl;\red255\green255\blue255;\red170\green13\blue145;\red92\green38\blue153;\red46\green13\blue110;
+\red0\green116\blue0;\red63\green110\blue116;\red28\green0\blue207;\red196\green26\blue22;\red38\green71\blue75;
+}
+\paperw11900\paperh16840\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 \
+Map View\
+\
+\pard\tx890\pardeftab890\pardirnatural\partightenfactor0
+
+\f1\fs36 \cf0 \CocoaLigature0 \
+\cf2 import\cf0  UIKit\
+\cf2 import\cf0  MapKit\
+\
+\cf2 class\cf0  mapdemoViewController: \cf3 UIViewController\cf0 ,\cf3 CLLocationManagerDelegate\cf0 ,\cf3 MKMapViewDelegate\cf0  \{\
+    \
+    \
+    \cf2 @IBOutlet\cf0  \cf2 var\cf0  mapView: \cf3 MKMapView\cf0 !\
+    \
+      \cf2 let\cf0  locationManager = \cf3 CLLocationManager\cf0 ()\
+\
+    \cf2 override\cf0  \cf2 func\cf0  viewDidLoad() \{\
+        \cf2 super\cf0 .\cf4 viewDidLoad\cf0 ()\
+\
+        \cf5 // Do any additional setup after loading the view.\
+\cf0         \
+        \cf5 // 1)\
+\cf0         \cf6 mapView\cf0 .\cf3 mapType\cf0  = \cf3 MKMapType\cf0 .\cf4 standard\cf0 \
+        \
+        \cf5 // 2)\
+\cf0         \cf2 let\cf0  location = \cf3 CLLocationCoordinate2D\cf0 (latitude: \cf7 23.0225\cf0 ,longitude: \cf7 72.5714\cf0 )\
+        \cf2 let\cf0  location1 = \cf3 CLLocationCoordinate2D\cf0 (latitude: \cf7 24.0225\cf0 ,longitude: \cf7 71.5714\cf0 )\
+        \
+        \cf5 // 3)\
+\cf0         \cf2 let\cf0  span = \cf4 MKCoordinateSpanMake\cf0 (\cf7 0.75\cf0 , \cf7 0.75\cf0 )\
+        \cf2 let\cf0  region = \cf3 MKCoordinateRegion\cf0 (center: location, span: span)\
+        \cf2 let\cf0  region1 = \cf3 MKCoordinateRegion\cf0 (center: location1, span: span)\
+        \cf6 mapView\cf0 .\cf4 setRegion\cf0 (region, animated: \cf2 true\cf0 )\
+        \cf6 mapView\cf0 .\cf4 setRegion\cf0 (region1, animated: \cf2 true\cf0 )\
+       \
+        \cf5 // 4)\
+\cf0         \cf2 let\cf0  annotation = \cf3 MKPointAnnotation\cf0 ()\
+        annotation.\cf3 coordinate\cf0  = location\
+        annotation.\cf3 title\cf0  = \cf8 "Agile Infoways"\cf0 \
+        annotation.\cf3 subtitle\cf0  = \cf8 "Ahmedabad"\cf0 \
+        \cf6 mapView\cf0 .\cf4 addAnnotation\cf0 (annotation)\
+        \
+        \cf2 self\cf0 .\cf6 locationManager\cf0 .\cf4 requestAlwaysAuthorization\cf0 ()\
+        \
+        \cf5 // For use in foreground\
+\cf0         \cf2 self\cf0 .\cf6 locationManager\cf0 .\cf4 requestWhenInUseAuthorization\cf0 ()\
+        \
+        \cf2 if\cf0  \cf3 CLLocationManager\cf0 .\cf4 locationServicesEnabled\cf0 ()\
+        \{\
+            \cf6 locationManager\cf0 .\cf3 delegate\cf0  = \cf2 self\cf0 \
+            \cf6 locationManager\cf0 .\cf3 desiredAccuracy\cf0  = \cf3 kCLLocationAccuracyNearestTenMeters\cf0 \
+            \cf6 locationManager\cf0 .\cf4 startUpdatingLocation\cf0 ()\
+        \}\
+\
+        \
+        \
+        \
+        \
+        \
+    \}\
+    \
+    \cf2 func\cf0  locationManager(\cf2 _\cf0  manager: \cf3 CLLocationManager\cf0 , didUpdateLocations locations: [\cf3 CLLocation\cf0 ])\
+    \{\
+        \cf2 let\cf0  locValue:\cf3 CLLocationCoordinate2D\cf0  = manager.\cf3 location\cf0 !.\cf3 coordinate\cf0 \
+        \cf4 print\cf0 (\cf8 "locations = \cf0 \\\cf8 (\cf0 locValue.\cf3 latitude\cf8 ) \cf0 \\\cf8 (\cf0 locValue.\cf3 longitude\cf8 )"\cf0 )\
+        \
+    \cf6 locationManager\cf0 .\cf4 stopUpdatingLocation\cf0 ()\
+        \
+    \}\
+    \cf2 func\cf0  locationManager(\cf2 _\cf0  manager: \cf3 CLLocationManager\cf0 , didFailWithError error: \cf3 Error\cf0 )\
+    \{\
+        \cf6 locationManager\cf0 .\cf4 stopUpdatingLocation\cf0 ()\
+        \
+        \cf2 if\cf0  ((error) != \cf2 nil\cf0 )\
+        \{\
+            \cf4 print\cf0 (error)\
+        \}\
+    \}\
+    \
+    \
+    \cf2 func\cf0  mapView(\cf2 _\cf0  mapView: \cf3 MKMapView\cf0 , viewFor annotation: \cf3 MKAnnotation\cf0 ) -> \cf3 MKAnnotationView\cf0 ? \{\
+        \cf5 // Don't want to show a custom image if the annotation is the user's location.\
+\cf0         \cf2 guard\cf0  \cf4 !\cf0 (annotation \cf2 is\cf0  \cf3 MKUserLocation\cf0 ) \cf2 else\cf0  \{\
+            \cf2 return\cf0  \cf2 nil\cf0 \
+        \}\
+        \
+        \cf5 // Better to make this class property\
+\cf0         \cf2 let\cf0  annotationIdentifier = \cf8 "AnnotationIdentifier"\cf0 \
+        \
+        \cf2 var\cf0  annotationView: \cf3 MKAnnotationView\cf0 ?\
+        annotationView = \cf3 MKAnnotationView\cf0 (annotation: annotation, reuseIdentifier: annotationIdentifier)\
+        \
+        \cf5 //annotationView?.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)\
+\cf0         \
+        \cf2 let\cf0  btn = \cf3 UIButton\cf0 (type:.\cf4 detailDisclosure\cf0 )\
+        \
+        btn.\cf4 addTarget\cf0 (\cf2 self\cf0 , action: \cf2 #selector\cf0 (\cf6 mapdemoViewController\cf0 .\cf9 ratingButtonTapped\cf0 (sender:)), for: .\cf3 touchUpInside\cf0 )\
+        annotationView?.\cf3 rightCalloutAccessoryView\cf0  = btn\
+        \
+        \
+        annotationView?.\cf3 canShowCallout\cf0  = \cf2 true\cf0 \
+        annotationView?.\cf3 image\cf0  = \cf3 UIImage\cf0 (named: \cf8 "pinMapD"\cf0 )\
+        \
+        \
+        \cf2 return\cf0  annotationView\
+    \}\
+\
+    \cf2 func\cf0  ratingButtonTapped(sender:\cf3 UIButton\cf0 )\
+    \{\
+        \cf4 print\cf0 (\cf8 "button click"\cf0 )\
+        \
+        \
+    \}\
+\
+    \cf2 override\cf0  \cf2 func\cf0  didReceiveMemoryWarning() \{\
+        \cf2 super\cf0 .\cf4 didReceiveMemoryWarning\cf0 ()\
+        \cf5 // Dispose of any resources that can be recreated.\
+\cf0     \}\
+    \
+\
+\
+\
+\}\
+}

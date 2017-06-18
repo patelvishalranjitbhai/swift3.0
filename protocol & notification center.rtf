@@ -1,0 +1,168 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1404\cocoasubrtf470
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fnil\fcharset0 Menlo-Regular;}
+{\colortbl;\red255\green255\blue255;\red0\green116\blue0;\red170\green13\blue145;\red92\green38\blue153;
+\red63\green110\blue116;\red46\green13\blue110;\red38\green71\blue75;\red196\green26\blue22;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww26820\viewh12280\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 \
+protocol & Notification Center\
+\
+\pard\tx890\pardeftab890\pardirnatural\partightenfactor0
+
+\f1\fs36 \cf2 \CocoaLigature0 View \'971\
+\
+\
+//  ViewController.swift\
+//  ProtocolLearning\
+//\
+//  Created by agilepc-140 on 17/05/17.\
+//  Copyright \'a9 2017 Ballu. All rights reserved.\
+//\
+\cf0 \
+\cf3 import\cf0  UIKit\
+\
+\cf3 class\cf0  ViewController: \cf4 UIViewController\cf0 ,\cf5 myFirstProtocol\cf0  \{\
+    \cf3 var\cf0  abc: \cf4 String\cf0  = \cf4 String\cf0 ()\
+    \
+    \
+    \
+    \cf3 @IBOutlet\cf0  \cf3 weak\cf0  \cf3 var\cf0  lblFirst: \cf4 UILabel\cf0 !\
+    \
+    \cf3 @IBOutlet\cf0  \cf3 weak\cf0  \cf3 var\cf0  txtFirst: \cf4 UITextField\cf0 !\
+\
+    \cf3 @IBOutlet\cf0  \cf3 weak\cf0  \cf3 var\cf0  lbl2First: \cf4 UILabel\cf0 !\
+\
+    \
+    \
+    \
+    \cf3 override\cf0  \cf3 func\cf0  viewDidLoad()\
+    \{\
+        \cf3 super\cf0 .\cf6 viewDidLoad\cf0 ()\
+   \'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97    notification centre Start\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97     \
+        \cf3 let\cf0  nc = \cf4 NotificationCenter\cf0 .\cf4 default\cf0 \
+        \
+        nc.\cf6 addObserver\cf0 (\cf3 self\cf0 , selector: \cf3 #selector\cf0 (\cf7 userLoggedIn\cf0 ) , name: \cf4 NSNotification\cf0 .\cf4 Name\cf0 (rawValue: \cf5 str\cf0 ), object: \cf3 nil\cf0 )\
+    \}\
+    \
+    \cf3 override\cf0  \cf3 func\cf0  viewWillAppear(\cf3 _\cf0  animated: \cf4 Bool\cf0 ) \{\
+        \cf5 lbl2First\cf0 .\cf4 text\cf0  = \cf5 str\cf0 \
+    \}\
+    \
+    \cf3 func\cf0  userLoggedIn () \{\
+        \
+        \cf6 print\cf0 (\cf8 "notification method is called"\cf0 )\
+    \}\
+\
+\'97\'97\'97\'97\'97\'97\'97\'97\'97    notification centre End - \'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\
+\
+\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97  protocol start   \'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\
+\
+    \cf3 @IBAction\cf0  \cf3 func\cf0  btnNext(\cf3 _\cf0  sender: \cf4 UIButton\cf0 ) \{\
+        \cf3 let\cf0  next = \cf4 storyboard\cf0 ?.\cf6 instantiateViewController\cf0 (withIdentifier: \cf8 "SecondViewController"\cf0 )\cf3 as\cf0 ! \cf5 SecondViewController\cf0 \
+        next.\cf5 delegate\cf0  = \cf3 self\cf0 \
+        next.\cf5 valueFirst\cf0  = \cf5 txtFirst\cf0 .\cf4 text\cf0 !\
+        \cf4 navigationController\cf0 ?.\cf6 pushViewController\cf0 (next, animated: \cf3 true\cf0 )\
+    \}\
+    \
+    \cf2 //Mark:- Protocol Method\
+\cf0     \
+    \cf3 func\cf0  helloWorld(value: \cf4 String\cf0 )\
+    \{\
+        \cf5 lblFirst\cf0 .\cf4 text\cf0   = value \cf6 +\cf0  \cf8 " "\cf0  \cf6 +\cf0  \cf5 txtFirst\cf0 .\cf4 text\cf0 !\
+    \}\
+\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97   protocol End   \'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\
+\}\
+\
+\
+view \'97 2\
+\
+\cf2 //\
+//  SecondViewController.swift\
+//  ProtocolLearning\
+//\
+//  Created by agilepc-140 on 17/05/17.\
+//  Copyright \'a9 2017 Ballu. All rights reserved.\
+//\
+\cf0 \'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97       protocol start    \'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\
+\cf3 import\cf0  UIKit\
+\cf3 protocol\cf0  myFirstProtocol \{\
+    \cf3 func\cf0  helloWorld(value:\cf4 String\cf0 )\
+\}\
+\
+\cf3 class\cf0  SecondViewController: \cf4 UIViewController\cf0  \{\
+   \
+    \cf3 var\cf0  delegate: \cf5 myFirstProtocol\cf0 ?\
+    \
+    \cf3 @IBOutlet\cf0  \cf3 weak\cf0  \cf3 var\cf0  lblSecond: \cf4 UILabel\cf0 !\
+    \cf3 var\cf0  valueFirst = \cf4 String\cf0 ()\
+    \
+    \cf3 @IBOutlet\cf0  \cf3 weak\cf0  \cf3 var\cf0  txtSecond: \cf4 UITextField\cf0 !\
+    \
+    \
+    \cf3 override\cf0  \cf3 func\cf0  viewDidLoad() \{\
+        \cf3 super\cf0 .\cf6 viewDidLoad\cf0 ()\
+        \cf5 lblSecond\cf0 .\cf4 text\cf0  = \cf5 valueFirst\cf0 \
+       \cf2 // valueSecond = txtSecond.text!\
+\cf0         \
+        \cf2 // Do any additional setup after loading the view.\
+\cf0     \}\
+    \
+    \cf3 @IBAction\cf0  \cf3 func\cf0  btnHome(\cf3 _\cf0  sender: \cf4 UIButton\cf0 )\
+    \{\
+        \cf5 delegate\cf0 ?.\cf7 helloWorld\cf0 (value: \cf5 txtSecond\cf0 .\cf4 text\cf0 !)\
+        \
+ \'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97      protocol End     \'97\'97\'97\'97\'97\'97\'97\'97\'97\'97       \
+       \cf3 let\cf0  next = \cf4 storyboard\cf0 ?.\cf6 instantiateViewController\cf0 (withIdentifier: \cf8 "ThirdViewController"\cf0 )\cf3 as\cf0 ! \cf5 ThirdViewController\cf0 \
+        \cf4 navigationController\cf0 ?.\cf6 pushViewController\cf0 (next, animated: \cf3 true\cf0 )\
+\
+        \
+      \cf2 //  self.navigationController?.popViewController(animated: true)\
+\cf0         \
+    \}\
+    \
+\
+\}\
+\
+\
+view \'97 3\
+\
+\cf2 //\
+//  ThirdViewController.swift\
+//  ProtocolLearning\
+//\
+//  Created by agilepc-140 on 17/05/17.\
+//  Copyright \'a9 2017 Ballu. All rights reserved.\
+//\
+\cf0 \'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97    notification centre start   \'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\
+\cf3 import\cf0  UIKit\
+ \cf3 var\cf0  str = \cf4 String\cf0 ()\
+\cf3 class\cf0  ThirdViewController: \cf4 UIViewController\cf0  \{\
+   \
+    \cf3 @IBOutlet\cf0  \cf3 weak\cf0  \cf3 var\cf0  txtThird: \cf4 UITextField\cf0 !\
+    \cf3 override\cf0  \cf3 func\cf0  viewDidLoad() \{\
+        \cf3 super\cf0 .\cf6 viewDidLoad\cf0 ()\
+\
+        \cf2 // Do any additional setup after loading the view.\
+\cf0     \}\
+\
+    \cf3 @IBAction\cf0  \cf3 func\cf0  btnThird(\cf3 _\cf0  sender: \cf4 UIButton\cf0 ) \{\
+        \cf5 str\cf0  = \cf5 txtThird\cf0 .\cf4 text\cf0 !\
+    \cf3 let\cf0  nc = \cf4 NotificationCenter\cf0 .\cf4 default\cf0 \
+        nc.\cf6 post\cf0 (name: \cf4 NSNotification\cf0 .\cf4 Name\cf0 (rawValue: \cf5 str\cf0 ), object: \cf3 nil\cf0 )\
+\
+\
+   \
+\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97   notification centre End     \'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\
+\
+\
+\
+        \cf4 navigationController\cf0 ?.\cf6 popToRootViewController\cf0 (animated: \cf3 true\cf0 )\
+  \
+    \}\
+\
+   \
+\
+\}\
+\
+}

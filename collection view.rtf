@@ -1,0 +1,62 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1404\cocoasubrtf470
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fnil\fcharset0 Menlo-Regular;}
+{\colortbl;\red255\green255\blue255;\red92\green38\blue153;\red170\green13\blue145;\red0\green116\blue0;
+\red28\green0\blue207;\red46\green13\blue110;\red63\green110\blue116;\red196\green26\blue22;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 \
+Collection View\
+\
+\
+\pard\tx890\pardeftab890\pardirnatural\partightenfactor0
+
+\f1\fs36 \cf2 \CocoaLigature0 UICollectionViewDelegate\cf0 ,\cf2 UICollectionViewDataSource\cf0 ,\cf2 UICollectionViewDelegateFlowLayout\
+\
+\cf0   \cf3 override\cf0  \cf3 func\cf0  viewDidLayoutSubviews() \{\
+        \
+        \cf3 let\cf0  flowLayout :\cf2 UICollectionViewFlowLayout\cf0  = \cf2 UICollectionViewFlowLayout\cf0 ();\
+        \
+        \cf4 // flowLayout.sectionInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)\
+\cf0         \
+        \cf4 //flowLayout.itemSize = CGSize(width: (SCREEN_WIDTH-40)/3, height: (SCREEN_WIDTH-40)/3)\
+\cf0         \
+        \cf4 //let getDiffn = (SCREEN_WIDTH - 265) / 2\
+\cf0         \
+        flowLayout.\cf2 minimumInteritemSpacing\cf0  = \cf5 10\cf0 \
+        flowLayout.\cf2 minimumLineSpacing\cf0  = \cf5 5\cf0 \
+        flowLayout.\cf2 sectionInset\cf0  = \cf6 UIEdgeInsetsMake\cf0 (\cf5 20\cf0 , \cf5 20\cf0 , \cf5 20\cf0 , \cf5 20\cf0 )\
+        \cf7 colView\cf0 .\cf6 setCollectionViewLayout\cf0 (flowLayout, animated: \cf3 true\cf0 )\
+    \}\
+\
+    \
+    \cf3 func\cf0  collectionView(\cf3 _\cf0  collectionView: \cf2 UICollectionView\cf0 , layout collectionViewLayout: \cf2 UICollectionViewLayout\cf0 , sizeForItemAt indexPath: \cf2 IndexPath\cf0 ) -> \cf2 CGSize\cf0 \
+    \{\
+        \
+        \cf3 return\cf0  \cf2 CGSize\cf0 (width: \cf5 75\cf0  , height: \cf5 60\cf0 )\
+        \cf4 //return CGSize(((SCREEN_WIDTH - 30) / 3), ((SCREEN_WIDTH - 30) / 3))\
+\cf0         \
+    \}\
+    \cf3 func\cf0  collectionView(\cf3 _\cf0  collectionView: \cf2 UICollectionView\cf0 , numberOfItemsInSection section: \cf2 Int\cf0 ) -> \cf2 Int\cf0  \{\
+        \cf3 return\cf0  \cf5 9\cf0 \
+        \
+    \}\
+    \
+    \cf3 func\cf0  numberOfSections(in collectionView: \cf2 UICollectionView\cf0 ) -> \cf2 Int\cf0  \{\
+        \cf3 return\cf0  \cf5 1\cf0 \
+    \}\
+    \cf3 func\cf0  collectionView(\cf3 _\cf0  collectionView: \cf2 UICollectionView\cf0 , cellForItemAt indexPath: \cf2 IndexPath\cf0 ) -> \cf2 UICollectionViewCell\cf0  \{\
+        \
+        \cf3 let\cf0  cell = \cf7 colView\cf0 .\cf6 dequeueReusableCell\cf0 (withReuseIdentifier: \cf8 "cell"\cf0 , for: indexPath)\
+        \
+        \cf3 return\cf0  cell\
+        \
+        \
+    \}\
+    \
+    \cf3 func\cf0  collectionView(\cf3 _\cf0  collectionView: \cf2 UICollectionView\cf0 , didSelectItemAt indexPath: \cf2 IndexPath\cf0 ) \{\
+        \
+        \
+        \
+    \}\
+}
